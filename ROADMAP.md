@@ -369,5 +369,5 @@ HTTP Server → RPC 框架 → 分布式 KV 存储 → 消息队列
 
 - [ ] 决定 sysmon 项目的仓库位置（独立仓库 vs 仓库内子目录）
 - [ ] 从 Part 0（Ch00-02）或 Part 2（工程工具链）开始落地第一张教程
-- [ ] DirScanner 完成集成（加入 git、更新 README、创建视频目录）
+- [x] DirScanner 完成集成（加入 git、更新 README、创建视频目录）
 - [ ] 确定首批新项目的开发优先级（建议：JSON Parser → HTTP Server → Coroutine Task）

@@ -69,15 +69,27 @@ public:
   template <typename T> [[nodiscard]] T get(const std::string &key) const {
     auto it = args_.find(key);
     if (it != args_.end() && !it->second.value.empty()) {
-      T result;
-      std::istringstream(it->second.value) >> result;
+      T result{};
+      std::istringstream iss(it->second.value);
+      iss >> result;
+      if (iss.fail()) {
+        throw std::invalid_argument(
+            "Argument '" + key + "' = '" + it->second.value +
+            "' is not convertible to the requested type");
+      }
       return result;
     }
 
     auto pit = pos_values.find(key);
     if (pit != pos_values.end()) {
-      T result;
-      std::istringstream(pit->second) >> result;
+      T result{};
+      std::istringstream iss(pit->second);
+      iss >> result;
+      if (iss.fail()) {
+        throw std::invalid_argument(
+            "Positional '" + key + "' = '" + pit->second +
+            "' is not convertible to the requested type");
+      }
       return result;
     }
 
