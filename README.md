@@ -8,6 +8,17 @@
 
 ---
 
+## 🚀 从这里开始
+
+| 你想... | 去这里 |
+|---------|--------|
+| 📺 看视频 | [B 站《现代 C++ 工程实践》46 期合集](https://space.bilibili.com/294645890/lists/7045956) |
+| 🌱 第一次来，跟着学 | 从 [ArgParser](./src/ArgParser/) 开始（🌱 入门 ~2h） |
+| 💻 直接跑代码 | `git clone` → `cmake -B build && cmake --build build`（纯 CMake，零依赖） |
+| 🗺️ 看完整规划 | [ROADMAP.md](./ROADMAP.md)（当前进度 + 长期愿景） |
+
+---
+
 ## ✨ 为什么这个教程
 
 如果你：
@@ -120,7 +131,7 @@ cmake -B build -DHUB_BUILD_DIRSCANNER=OFF
 | 项目 | 视频数 | 专题列表 |
 |------|--------|----------|
 | [ArgParser](./video/argparser.md) | 6 | 命令行参数解析器 |
-| [IniParser](./video/iniparser.md) | 11 | INI配置文件解析器 |
+| [IniParser](./video/iniparser.md) | 12 | INI配置文件解析器 |
 | [FileCopier](./video/filecopier.md) | 5 | 文件拷贝与进度条 |
 | [MemoryPool](./video/memory_pool.md) | 9 | 高性能内存池实现 |
 | [DirScanner](./video/dirscanner.md) | 9 | 目录扫描与 Top-K 分析 |
@@ -172,11 +183,11 @@ cmake -B build -DHUB_BUILD_DIRSCANNER=OFF
 - 🐛 **GitHub Issue** - 描述具体问题，附上复现代码
 - 💬 **讨论区** - 交流学习心得，提出建议
 
-非常感谢来自B站评论区的各位的建议，这里特别对各位的建议整理成一份TODO清单:
+非常感谢来自 B 站评论区的各位建议。以下为历史建议存档（暂未纳入 ROADMAP，保留溯源）:
 
-| 平台 | 用户名 | 原评论 | 对应的TODO反馈 |
-|------|--------|--------|----------------|
-| B站 | cache是什么 | 来自c++26有些新特性有助于写一个更好用的argparser，可以等编译器支持了再写一个，比如反射机制 | 等gcc足够新的支持静态反射，重新出一版ArgParser教程 |
+| 平台 | 用户名 | 原评论 | 状态 |
+|------|--------|--------|------|
+| B站 | cache是什么 | 来自 C++26 反射机制有助于写更好用的 argparser，等编译器支持再写 | 📌 历史建议：待 GCC 支持静态反射，可能出 ArgParser v2 |
 
 ### 贡献方式
 
@@ -203,11 +214,12 @@ cmake -B build -DHUB_BUILD_DIRSCANNER=OFF
 - 分享给身边学习 C++ 的朋友（然后一起开喷代码写的好烂）（逃
 - 在 B 站关注我，获取更新通知
 
-## 🌟 其他
+## 🔗 相关资源
 
-当然如果感觉自己误闯天家，没事，这里还有专门的（偏嵌入式的）现代C++教程，点击访问仓库：
+> 想学 C++ 原理？配套姊妹仓 **[Tutorial_AwesomeModernCPP](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_AwesomeModernCPP)** 讲原理，本仓把原理组装成能跑的工程。
 
-👉 :link: [现代C++教程](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_AwesomeModernCPP)
+- 🧠 **[Tutorial_AwesomeModernCPP](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_AwesomeModernCPP)** — 现代 C++ 原理（偏嵌入式方向）
+- 🧩 **[anatomy_memory](https://github.com/Awesome-Embedded-Learning-Studio/anatomy_memory)** — 解剖内存 · C++ 内存分配器专栏（本仓 MemoryPool spoke 的独立仓，长期开发中）
 
 ---
 
