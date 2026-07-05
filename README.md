@@ -1,4 +1,4 @@
-# 🎬 Project_CXXBaseComponents
+# 🎬 engineering-cpp
 
 **C++23 | CMake 3.25+ | MIT License**
 
@@ -46,8 +46,8 @@
 
 ```bash
 # 克隆主仓库
-git clone https://github.com/Awesome-Embedded-Learning-Studio/Project_CXXBaseComponents
-cd Project_CXXBaseComponents
+git clone https://github.com/Awesome-Embedded-Learning-Studio/engineering_cpp
+cd engineering_cpp
 
 # 初始化子模块（spoke 专栏仓：IniParser / MemoryPool）
 git submodule update --init

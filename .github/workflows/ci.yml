@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-test:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: "gcc-14 Release",    gcc: 14, sanitize: OFF }
+          - { name: "gcc-13 Release",    gcc: 13, sanitize: OFF }
+          - { name: "gcc-14 ASan+UBSan", gcc: 14, sanitize: ON  }
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install g++-${{ matrix.gcc }}
+        run: |
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+          sudo apt-get update
+          sudo apt-get install -y g++-${{ matrix.gcc }}
+      - name: Configure
+        run: |
+          cmake -B build \
+            -DCMAKE_C_COMPILER=gcc-${{ matrix.gcc }} \
+            -DCMAKE_CXX_COMPILER=g++-${{ matrix.gcc }} \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DHUB_SANITIZE=${{ matrix.sanitize }}
+      - name: Build
+        run: cmake --build build -j$(nproc)
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
+  clang-tidy:
+    name: clang-tidy (report)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-tidy cmake g++
+      - name: Configure (compile_commands.json,不拉测试依赖)
+        run: cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DHUB_BUILD_TESTS=OFF
+      - name: Run clang-tidy
+        run: |
+          FILES=$(find src -name '*.cpp' -not -path '*/test/*')
+          echo "Checking:" $FILES
+          clang-tidy -p build $FILES

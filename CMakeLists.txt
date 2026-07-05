@@ -17,12 +17,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+if(HUB_SANITIZE)
+  add_compile_options(-fsanitize=address,undefined -fno-omit-frame-pointer)
+  add_link_options(-fsanitize=address,undefined)
+endif()
+
 include(CTest)  # 自动 enable_testing() + BUILD_TESTING 默认 ON
 
 option(HUB_BUILD_ARGPARSER  "Build ArgParser demo"      ON)
 option(HUB_BUILD_FILECOPIER "Build FileCopier demo"     ON)
 option(HUB_BUILD_DIRSCANNER "Build DirScanner demo"     ON)
 option(HUB_BUILD_TESTS      "Build unit tests (Catch2)" ON)
+option(HUB_SANITIZE         "Enable AddressSanitizer + UBSan" OFF)
 
 # ── 共享库:argparser(消双源后的唯一源头)─────────────────────────
 add_library(argparser STATIC src/ArgParser/ArgParser.cpp)
@@ -45,9 +51,12 @@ if(HUB_BUILD_ARGPARSER)
 endif()
 
 # ── FileCopier demo ─────────────────────────────────────────────
+add_library(filecopier_lib STATIC src/FileCopier/FileCopier.cpp)
+target_include_directories(filecopier_lib PUBLIC src/FileCopier)
+
 if(HUB_BUILD_FILECOPIER)
-  add_executable(fcopy src/FileCopier/FileCopier.cpp src/FileCopier/demo.cpp)
-  target_include_directories(fcopy PRIVATE src/FileCopier)
+  add_executable(fcopy src/FileCopier/demo.cpp)
+  target_link_libraries(fcopy PRIVATE filecopier_lib)
 endif()
 
 # ── DirScanner(lib + demo + test)────────────────────────────────
@@ -71,4 +80,11 @@ if(BUILD_TESTING AND HUB_BUILD_TESTS)
   add_executable(argparser_test src/ArgParser/test/argparser_test.cpp)
   target_link_libraries(argparser_test PRIVATE argparser Catch2::Catch2WithMain)
   add_test(NAME argparser_test COMMAND argparser_test)
+endif()
+
+# ── FileCopier tests ────────────────────────────────────────────
+if(BUILD_TESTING AND HUB_BUILD_TESTS)
+  add_executable(filecopier_test src/FileCopier/test/filecopier_test.cpp)
+  target_link_libraries(filecopier_test PRIVATE filecopier_lib Catch2::Catch2WithMain)
+  add_test(NAME filecopier_test COMMAND filecopier_test)
 endif()
