@@ -179,7 +179,7 @@ def main():
         "mempool": "[memory_pool](./project/memory_pool/)",
         "iniparser": "[IniParser](./project/IniParser/)",
         "ini": "[IniParser](./project/IniParser/)",
-        "mimalloc": "[mimalloc](./project/external/mimalloc/)",
+        "mimalloc": "[mimalloc](./video/mimalloc.md)",
     }
 
     print("🕷️  B站视频合集爬虫\n")

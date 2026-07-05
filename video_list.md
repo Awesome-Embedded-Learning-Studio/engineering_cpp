@@ -30,11 +30,11 @@
 | [memory_pool](./project/memory_pool/) | 现代C++工程实践——从内存池是什么出发 | [📺](https://www.bilibili.com/video/BV14g6TBcEyL/) | ✅ |
 | - | 现代C++工程实践——malloc咋不行了？（上） | [📺](https://www.bilibili.com/video/BV1ES6hBQE1E/) | ✅ |
 | - | 现代C++工程实践——malloc咋不行了？（下） | [📺](https://www.bilibili.com/video/BV1hN6aB6EU9/) | ✅ |
-| [mimalloc](./project/external/mimalloc/) | 现代C++工程实践——如何起手阅读一个开源项目？（mimalloc-1） | [📺](https://www.bilibili.com/video/BV1mzFwzeE3D/) | ✅ |
-| [mimalloc](./project/external/mimalloc/) | 现代C++工程实践——从最近的heap入手（mimalloc-2） | [📺](https://www.bilibili.com/video/BV1tBFwzNENX/) | ✅ |
-| [mimalloc](./project/external/mimalloc/) | 现代C++工程实践——第二个数据结构-mi_page_t（mimalloc-3） | [📺](https://www.bilibili.com/video/BV1xkFwzaEav/) | ✅ |
-| [mimalloc](./project/external/mimalloc/) | 现代C++工程实践——mi_malloc的实现细节（mimalloc-4） | [📺](https://www.bilibili.com/video/BV12rFwzAEkB/) | ✅ |
-| [mimalloc](./project/external/mimalloc/) | 现代C++工程实践——mi_free的实现细节（mimalloc-5） | [📺](https://www.bilibili.com/video/BV18YFwzBEzx/) | ✅ |
+| [mimalloc](./video/mimalloc.md) | 现代C++工程实践——如何起手阅读一个开源项目？（mimalloc-1） | [📺](https://www.bilibili.com/video/BV1mzFwzeE3D/) | ✅ |
+| [mimalloc](./video/mimalloc.md) | 现代C++工程实践——从最近的heap入手（mimalloc-2） | [📺](https://www.bilibili.com/video/BV1tBFwzNENX/) | ✅ |
+| [mimalloc](./video/mimalloc.md) | 现代C++工程实践——第二个数据结构-mi_page_t（mimalloc-3） | [📺](https://www.bilibili.com/video/BV1xkFwzaEav/) | ✅ |
+| [mimalloc](./video/mimalloc.md) | 现代C++工程实践——mi_malloc的实现细节（mimalloc-4） | [📺](https://www.bilibili.com/video/BV12rFwzAEkB/) | ✅ |
+| [mimalloc](./video/mimalloc.md) | 现代C++工程实践——mi_free的实现细节（mimalloc-5） | [📺](https://www.bilibili.com/video/BV18YFwzBEzx/) | ✅ |
 | [memory_pool](./project/memory_pool/) | 现代C++工程实践——内存池之从FreeList入手 | [📺](https://www.bilibili.com/video/BV1aicGzgE1P/) | ✅ |
 | [memory_pool](./project/memory_pool/) | 现代C++工程实践——内存池之CentralPool | [📺](https://www.bilibili.com/video/BV1ehcGzCEdJ/) | ✅ |
 | [memory_pool](./project/memory_pool/) | 现代C++工程实践——内存池之ThreadLocal | [📺](https://www.bilibili.com/video/BV1ehcGzCEg7/) | ✅ |

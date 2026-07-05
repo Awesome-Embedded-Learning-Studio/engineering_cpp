@@ -228,7 +228,7 @@ Ch00-02         Ch03-12             Ch13-25             Ch26-35
 - **主映射：** Ch08（并发基础）· **辅映射：** Ch32（并发进阶）
 
 ### Mimalloc — 微软开源分配器源码阅读
-- **路径：** `project/external/mimalloc/`
+- **路径：** 上游 [microsoft/mimalloc](https://github.com/microsoft/mimalloc)，本地用 [scripts/fetch_mimalloc.sh](../scripts/fetch_mimalloc.sh) 拉取
 - **难度：** 💎 进阶 · **视频：** 5 期
 - **知识点：** `开源项目阅读` `高级内存分配器` `分段设计` `线程缓存`
 - **映射：** Ch32（并发进阶）— 进阶补充材料

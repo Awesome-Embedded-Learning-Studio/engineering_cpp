@@ -22,7 +22,7 @@
 
 - **官方仓库**: [microsoft/mimalloc](https://github.com/microsoft/mimalloc)
 - **论文**: [mimalloc: Free List Shuffling, Caching, Partial Coalescing, and Segregation](https://www.microsoft.com/en-us/research/publication/mimalloc-free-list-shuffling-caching-partial-coalescing-and-segregation/)
-- **本地路径**: [project/external/mimalloc/](../../project/external/mimalloc/)
+- **本地拉取**: `bash scripts/fetch_mimalloc.sh`（从仓根跑，拉取到 `project/external/mimalloc/`）
 - **视频教程**: [B站 - mimalloc 源码阅读](https://space.bilibili.com/294645890/lists/7045956)（5集）
 - **作者**: [是的一个城管](https://space.bilibili.com/294645890)
 
