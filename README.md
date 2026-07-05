@@ -98,15 +98,15 @@ cmake -B build -DHUB_BUILD_DIRSCANNER=OFF
 | 项目 | 一句话简介 | 路径 | 视频 | 状态 | 难度 |
 |------|-----------|------|------|------|------|
 | **IniParser** | INI 配置文件解析器 | [project/IniParser/](./project/IniParser/) | [📺](./video/iniparser.md) | ✅ v1 完结 | ⚡ |
-| **MemoryPool** | 高性能内存池实现 | [project/memory_pool/](./project/memory_pool/) | [📺](./video/memory_pool.md) | 🔥 v1 完结，v2 重构筹备中 | 🔥 |
+| **anatomy_memory** | 解剖内存 · C++ 内存分配器（FreeList→ThreadCache→CentralPool 三层） | [project/memory_pool/](./project/memory_pool/) | [📺](./video/memory_pool.md) | 🔥 长期开发中 · 持续填充 | 🔥 |
 
-> **MemoryPool v2** 重构时会把「读开源项目」（原 Mimalloc 系列）的工程价值接进来——mimalloc 不再作为本仓 submodule，转由 MemoryPool 专栏承接。
+> **anatomy_memory** 长期开发中，会逐步接住「读开源项目」（原 Mimalloc 系列）的工程价值——mimalloc 不再作为本仓 submodule，转由 anatomy_memory 专栏承接。
 
 ### 📦 外部子模块
 
 | 路径 | 仓库 | 说明 |
 |------|------|------|
-| [project/memory_pool](./project/memory_pool) | [Project_MakeAMemroyPool](https://github.com/Awesome-Embedded-Learning-Studio/Project_MakeAMemroyPool) | 内存池实现教程（spoke） |
+| [project/memory_pool](./project/memory_pool) | [anatomy_memory](https://github.com/Awesome-Embedded-Learning-Studio/anatomy_memory) | 解剖内存 · C++ 内存分配器（spoke，长期开发中） |
 | [project/IniParser](./project/IniParser) | [Tutorial_cpp_SimpleIniParser](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_cpp_SimpleIniParser) | INI 配置文件解析器（spoke） |
 
 ---

@@ -3,4 +3,4 @@
 	url = https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_cpp_SimpleIniParser
 [submodule "project/memory_pool"]
 	path = project/memory_pool
-	url = https://github.com/Awesome-Embedded-Learning-Studio/Project_MakeAMemroyPool
+	url = https://github.com/Awesome-Embedded-Learning-Studio/anatomy_memory

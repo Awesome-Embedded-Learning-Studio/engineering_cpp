@@ -1,6 +1,6 @@
 # 📺 MemoryPool 视频列表
 
-> 本项目配套教程：[Project_MakeAMemroyPool](https://github.com/Awesome-Embedded-Learning-Studio/Project_MakeAMemroyPool)
+> 本项目配套教程：[anatomy_memory](https://github.com/Awesome-Embedded-Learning-Studio/anatomy_memory)
 >
 > 代码仓库：[project/memory_pool](../project/memory_pool/)
 
