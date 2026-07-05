@@ -1,6 +1,3 @@
-[submodule "project/external/mimalloc"]
-	path = project/external/mimalloc
-	url = https://github.com/microsoft/mimalloc
 [submodule "project/IniParser"]
 	path = project/IniParser
 	url = https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_cpp_SimpleIniParser

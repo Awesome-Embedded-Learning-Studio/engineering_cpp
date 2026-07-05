@@ -38,8 +38,8 @@
 git clone https://github.com/Awesome-Embedded-Learning-Studio/Project_CXXBaseComponents
 cd Project_CXXBaseComponents
 
-# 初始化子模块（包含外部依赖库）
-git submodule update --init --recursive
+# 初始化子模块（spoke 专栏仓：IniParser / MemoryPool）
+git submodule update --init
 ```
 
 ### 选择你的第一个项目
@@ -56,46 +56,58 @@ git submodule update --init --recursive
 
 ### 构建与运行
 
-每个子项目都是独立的 CMake 工程，可以在对应目录下单独构建：
+本仓使用根 `CMakeLists.txt` 统一构建，每个子项目可用 CMake option 单独开关：
 
 ```bash
-# 以 ArgParser 为例
-cd src/ArgParser
+# 一键构建全部（纯 CMake，零外部依赖，clone 即 build）
 cmake -B build
 cmake --build build
 
-# 运行演示程序
-./build/demo --help
+# 跑测试（Catch2，BUILD_TESTING 默认 ON）
+ctest --test-dir build --output-on-failure
+
+# 单独关掉某个子项目
+cmake -B build -DHUB_BUILD_DIRSCANNER=OFF
 ```
 
 > **说明**
-> - `src/` 下每个目录均为独立的 CMake 工程，可单独编译运行
-> - 体量较大的项目以 **Git Submodule** 形式链接外部仓库
-> - `documentation/` 中存放对应项目的知识点梳理与补充文档
+> - 根 `CMakeLists.txt` 统一管理所有 target：`HUB_BUILD_ARGPARSER` / `HUB_BUILD_FILECOPIER` / `HUB_BUILD_DIRSCANNER` / `HUB_BUILD_TESTS`，默认均为 `ON`
+> - `argparser` 提成共享库（`src/ArgParser/`），`DirScanner` 复用它——不再有重复拷贝
+> - 深度话题以 **Git Submodule** 形式链接独立 spoke 仓（IniParser / MemoryPool）
+> - `documentation/` 存放 hub-native 子项目的中文教程
 
 ---
 
 ## 📚 项目清单
 
-> **完整发展规划：** 参见 [ROADMAP.md](./ROADMAP.md) — 35 章课程大纲 + 已完成项目映射 + sysmon 贯穿项目时间线
+> **架构（hub-and-spoke）：** 本仓是 **hub**——横向技能 + 新手上路。小型教学专题内置在 `src/`（hub-native）；垂直深度话题独立成仓（spoke），通过 submodule 引入。
+> 完整学习路径见 [ROADMAP.md](./ROADMAP.md)。
 
 **难度说明**：🌱 入门 | ⚡ 初级 | 🔥 中级 | 💎 进阶
 
-| 项目名 | 一句话简介 | 路径 | 视频 | 文档 | 状态 | 难度 |
-|--------|-----------|------|------|------|------|------|
-| **ArgParser** | 从零实现命令行参数解析器 | `src/ArgParser/` | [📺](./video/argparser.md) | [📄](./documentation/tutorial/ArgParser/) | ✅ | 🌱 |
-| **FileCopier** | 带进度条的文件拷贝工具 | `src/FileCopier/` | [📺](./video/filecopier.md) | - | ✅ | 🌱 |
-| **IniParser** | INI 配置文件解析器 | `project/IniParser/` | [📺](./video/iniparser.md) | [📄](./project/IniParser/tutorial/) | ✅ | ⚡ |
-| **MemoryPool** | 高性能内存池实现 | `project/memory_pool/` | [📺](./video/memory_pool.md) | - | ✅ | 🔥 |
-| **Mimalloc** | 微软开源分配器源码阅读 | `project/external/mimalloc/` | [📺](./video/mimalloc.md) | - | ✅ | 💎 |
+### 🌱 hub-native 小专题（本仓 `src/` 内置，统一构建）
+
+| 项目 | 一句话简介 | 路径 | 视频 | 文档 | 状态 | 难度 |
+|------|-----------|------|------|------|------|------|
+| **ArgParser** | 从零实现命令行参数解析器 | [src/ArgParser/](./src/ArgParser/) | [📺](./video/argparser.md) | [📄](./documentation/tutorial/ArgParser/) | ✅ 已完结 | 🌱 |
+| **FileCopier** | 带进度条的文件拷贝工具 | [src/FileCopier/](./src/FileCopier/) | [📺](./video/filecopier.md) | [📄](./documentation/tutorial/filecopier/) | ✅ 已完结 | 🌱 |
+| **DirScanner** | 目录扫描与 Top-K 分析 | [src/DirScanner/](./src/DirScanner/) | [📺](./video/dirscanner.md) | [📄](./src/DirScanner/TUTORIAL.md) | ✅ 已完结 | ⚡ |
+
+### 🔥 spoke 专栏仓（独立仓 + submodule，单独宣传）
+
+| 项目 | 一句话简介 | 路径 | 视频 | 状态 | 难度 |
+|------|-----------|------|------|------|------|
+| **IniParser** | INI 配置文件解析器 | [project/IniParser/](./project/IniParser/) | [📺](./video/iniparser.md) | ✅ v1 完结 | ⚡ |
+| **MemoryPool** | 高性能内存池实现 | [project/memory_pool/](./project/memory_pool/) | [📺](./video/memory_pool.md) | 🔥 v1 完结，v2 重构筹备中 | 🔥 |
+
+> **MemoryPool v2** 重构时会把「读开源项目」（原 Mimalloc 系列）的工程价值接进来——mimalloc 不再作为本仓 submodule，转由 MemoryPool 专栏承接。
 
 ### 📦 外部子模块
 
 | 路径 | 仓库 | 说明 |
 |------|------|------|
-| [project/external/mimalloc](./project/external/mimalloc) | [microsoft/mimalloc](https://github.com/microsoft/mimalloc) | 高性能内存分配器 |
-| [project/memory_pool](./project/memory_pool) | [Project_MakeAMemroyPool](https://github.com/Awesome-Embedded-Learning-Studio/Project_MakeAMemroyPool) | 内存池实现教程 |
-| [project/IniParser](./project/IniParser) | [Tutorial_cpp_SimpleIniParser](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_cpp_SimpleIniParser) | INI配置文件解析器 |
+| [project/memory_pool](./project/memory_pool) | [Project_MakeAMemroyPool](https://github.com/Awesome-Embedded-Learning-Studio/Project_MakeAMemroyPool) | 内存池实现教程（spoke） |
+| [project/IniParser](./project/IniParser) | [Tutorial_cpp_SimpleIniParser](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_cpp_SimpleIniParser) | INI 配置文件解析器（spoke） |
 
 ---
 
@@ -107,16 +119,17 @@ cmake --build build
 
 | 项目 | 视频数 | 专题列表 |
 |------|--------|----------|
-| [ArgParser](./video/argparser.md) | 3 | 命令行参数解析器 |
-| [IniParser](./video/iniparser.md) | 12 | INI配置文件解析器 |
+| [ArgParser](./video/argparser.md) | 6 | 命令行参数解析器 |
+| [IniParser](./video/iniparser.md) | 11 | INI配置文件解析器 |
 | [FileCopier](./video/filecopier.md) | 5 | 文件拷贝与进度条 |
 | [MemoryPool](./video/memory_pool.md) | 9 | 高性能内存池实现 |
+| [DirScanner](./video/dirscanner.md) | 9 | 目录扫描与 Top-K 分析 |
 | [Mimalloc](./video/mimalloc.md) | 5 | 开源项目源码阅读 |
 
 <details>
 <summary><b>📝 完整播放列表</b></summary>
 
-**[现代C++工程实践](https://space.bilibili.com/294645890/lists/7045956)** - 持续更新中
+**[现代C++工程实践](https://space.bilibili.com/294645890/lists/7045956)** — 第一季 5 系列 46 期已完结（2026-03），第二季筹备中
 
 </details>
 
