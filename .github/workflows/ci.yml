@@ -14,7 +14,6 @@ jobs:
       matrix:
         include:
           - { name: "gcc-14 Release",    gcc: 14, sanitize: OFF }
-          - { name: "gcc-13 Release",    gcc: 13, sanitize: OFF }
           - { name: "gcc-14 ASan+UBSan", gcc: 14, sanitize: ON  }
     steps:
       - uses: actions/checkout@v4
