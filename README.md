@@ -52,7 +52,7 @@ git submodule update --init
 | **[FileCopier](./src/FileCopier/)** | 🌱 | ~2h | 文件操作、进度条显示、性能测量 |
 | **[IniParser](./project/IniParser/)** | ⚡ | ~6h | `string_view`、`optional`、字符串处理、CMake |
 | **[MemoryPool](./project/memory_pool/)** | 🔥 | ~8h | 内存管理、线程安全、性能优化、benchmark |
-| **[Mimalloc](./project/external/mimalloc/)** | 💎 | ~4h | 开源项目源码阅读、高级内存分配器设计 |
+| [Mimalloc](./video/mimalloc.md) · [拉取](./scripts/fetch_mimalloc.sh) | 💎 | ~4h | 开源项目源码阅读（需先拉取上游 mimalloc） |
 
 ### 构建与运行
 
