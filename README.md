@@ -8,6 +8,17 @@
 
 ---
 
+## 🚀 从这里开始
+
+| 你想... | 去这里 |
+|---------|--------|
+| 📺 看视频 | [B 站《现代 C++ 工程实践》46 期合集](https://space.bilibili.com/294645890/lists/7045956) |
+| 🌱 第一次来，跟着学 | 从 [ArgParser](./src/ArgParser/) 开始（🌱 入门 ~2h） |
+| 💻 直接跑代码 | `git clone` → `cmake -B build && cmake --build build`（纯 CMake，零依赖） |
+| 🗺️ 看完整规划 | [ROADMAP.md](./ROADMAP.md)（当前进度 + 长期愿景） |
+
+---
+
 ## ✨ 为什么这个教程
 
 如果你：
@@ -38,8 +49,8 @@
 git clone https://github.com/Awesome-Embedded-Learning-Studio/Project_CXXBaseComponents
 cd Project_CXXBaseComponents
 
-# 初始化子模块（包含外部依赖库）
-git submodule update --init --recursive
+# 初始化子模块（spoke 专栏仓：IniParser / MemoryPool）
+git submodule update --init
 ```
 
 ### 选择你的第一个项目
@@ -52,50 +63,62 @@ git submodule update --init --recursive
 | **[FileCopier](./src/FileCopier/)** | 🌱 | ~2h | 文件操作、进度条显示、性能测量 |
 | **[IniParser](./project/IniParser/)** | ⚡ | ~6h | `string_view`、`optional`、字符串处理、CMake |
 | **[MemoryPool](./project/memory_pool/)** | 🔥 | ~8h | 内存管理、线程安全、性能优化、benchmark |
-| **[Mimalloc](./project/external/mimalloc/)** | 💎 | ~4h | 开源项目源码阅读、高级内存分配器设计 |
+| [Mimalloc](./video/mimalloc.md) · [拉取](./scripts/fetch_mimalloc.sh) | 💎 | ~4h | 开源项目源码阅读（需先拉取上游 mimalloc） |
 
 ### 构建与运行
 
-每个子项目都是独立的 CMake 工程，可以在对应目录下单独构建：
+本仓使用根 `CMakeLists.txt` 统一构建，每个子项目可用 CMake option 单独开关：
 
 ```bash
-# 以 ArgParser 为例
-cd src/ArgParser
+# 一键构建全部（纯 CMake，零外部依赖，clone 即 build）
 cmake -B build
 cmake --build build
 
-# 运行演示程序
-./build/demo --help
+# 跑测试（Catch2，BUILD_TESTING 默认 ON）
+ctest --test-dir build --output-on-failure
+
+# 单独关掉某个子项目
+cmake -B build -DHUB_BUILD_DIRSCANNER=OFF
 ```
 
 > **说明**
-> - `src/` 下每个目录均为独立的 CMake 工程，可单独编译运行
-> - 体量较大的项目以 **Git Submodule** 形式链接外部仓库
-> - `documentation/` 中存放对应项目的知识点梳理与补充文档
+> - 根 `CMakeLists.txt` 统一管理所有 target：`HUB_BUILD_ARGPARSER` / `HUB_BUILD_FILECOPIER` / `HUB_BUILD_DIRSCANNER` / `HUB_BUILD_TESTS`，默认均为 `ON`
+> - `argparser` 提成共享库（`src/ArgParser/`），`DirScanner` 复用它——不再有重复拷贝
+> - 深度话题以 **Git Submodule** 形式链接独立 spoke 仓（IniParser / MemoryPool）
+> - `documentation/` 存放 hub-native 子项目的中文教程
 
 ---
 
 ## 📚 项目清单
 
-> **完整发展规划：** 参见 [ROADMAP.md](./ROADMAP.md) — 35 章课程大纲 + 已完成项目映射 + sysmon 贯穿项目时间线
+> **架构（hub-and-spoke）：** 本仓是 **hub**——横向技能 + 新手上路。小型教学专题内置在 `src/`（hub-native）；垂直深度话题独立成仓（spoke），通过 submodule 引入。
+> 完整学习路径见 [ROADMAP.md](./ROADMAP.md)。
 
 **难度说明**：🌱 入门 | ⚡ 初级 | 🔥 中级 | 💎 进阶
 
-| 项目名 | 一句话简介 | 路径 | 视频 | 文档 | 状态 | 难度 |
-|--------|-----------|------|------|------|------|------|
-| **ArgParser** | 从零实现命令行参数解析器 | `src/ArgParser/` | [📺](./video/argparser.md) | [📄](./documentation/tutorial/ArgParser/) | ✅ | 🌱 |
-| **FileCopier** | 带进度条的文件拷贝工具 | `src/FileCopier/` | [📺](./video/filecopier.md) | - | ✅ | 🌱 |
-| **IniParser** | INI 配置文件解析器 | `project/IniParser/` | [📺](./video/iniparser.md) | [📄](./project/IniParser/tutorial/) | ✅ | ⚡ |
-| **MemoryPool** | 高性能内存池实现 | `project/memory_pool/` | [📺](./video/memory_pool.md) | - | ✅ | 🔥 |
-| **Mimalloc** | 微软开源分配器源码阅读 | `project/external/mimalloc/` | [📺](./video/mimalloc.md) | - | ✅ | 💎 |
+### 🌱 hub-native 小专题（本仓 `src/` 内置，统一构建）
+
+| 项目 | 一句话简介 | 路径 | 视频 | 文档 | 状态 | 难度 |
+|------|-----------|------|------|------|------|------|
+| **ArgParser** | 从零实现命令行参数解析器 | [src/ArgParser/](./src/ArgParser/) | [📺](./video/argparser.md) | [📄](./documentation/tutorial/ArgParser/) | ✅ 已完结 | 🌱 |
+| **FileCopier** | 带进度条的文件拷贝工具 | [src/FileCopier/](./src/FileCopier/) | [📺](./video/filecopier.md) | [📄](./documentation/tutorial/filecopier/) | ✅ 已完结 | 🌱 |
+| **DirScanner** | 目录扫描与 Top-K 分析 | [src/DirScanner/](./src/DirScanner/) | [📺](./video/dirscanner.md) | [📄](./src/DirScanner/TUTORIAL.md) | ✅ 已完结 | ⚡ |
+
+### 🔥 spoke 专栏仓（独立仓 + submodule，单独宣传）
+
+| 项目 | 一句话简介 | 路径 | 视频 | 状态 | 难度 |
+|------|-----------|------|------|------|------|
+| **IniParser** | INI 配置文件解析器 | [project/IniParser/](./project/IniParser/) | [📺](./video/iniparser.md) | ✅ v1 完结 | ⚡ |
+| **anatomy_memory** | 解剖内存 · C++ 内存分配器（FreeList→ThreadCache→CentralPool 三层） | [project/memory_pool/](./project/memory_pool/) | [📺](./video/memory_pool.md) | 🔥 长期开发中 · 持续填充 | 🔥 |
+
+> **anatomy_memory** 长期开发中，会逐步接住「读开源项目」（原 Mimalloc 系列）的工程价值——mimalloc 不再作为本仓 submodule，转由 anatomy_memory 专栏承接。
 
 ### 📦 外部子模块
 
 | 路径 | 仓库 | 说明 |
 |------|------|------|
-| [project/external/mimalloc](./project/external/mimalloc) | [microsoft/mimalloc](https://github.com/microsoft/mimalloc) | 高性能内存分配器 |
-| [project/memory_pool](./project/memory_pool) | [Project_MakeAMemroyPool](https://github.com/Awesome-Embedded-Learning-Studio/Project_MakeAMemroyPool) | 内存池实现教程 |
-| [project/IniParser](./project/IniParser) | [Tutorial_cpp_SimpleIniParser](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_cpp_SimpleIniParser) | INI配置文件解析器 |
+| [project/memory_pool](./project/memory_pool) | [anatomy_memory](https://github.com/Awesome-Embedded-Learning-Studio/anatomy_memory) | 解剖内存 · C++ 内存分配器（spoke，长期开发中） |
+| [project/IniParser](./project/IniParser) | [Tutorial_cpp_SimpleIniParser](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_cpp_SimpleIniParser) | INI 配置文件解析器（spoke） |
 
 ---
 
@@ -107,16 +130,17 @@ cmake --build build
 
 | 项目 | 视频数 | 专题列表 |
 |------|--------|----------|
-| [ArgParser](./video/argparser.md) | 3 | 命令行参数解析器 |
+| [ArgParser](./video/argparser.md) | 6 | 命令行参数解析器 |
 | [IniParser](./video/iniparser.md) | 12 | INI配置文件解析器 |
 | [FileCopier](./video/filecopier.md) | 5 | 文件拷贝与进度条 |
 | [MemoryPool](./video/memory_pool.md) | 9 | 高性能内存池实现 |
+| [DirScanner](./video/dirscanner.md) | 9 | 目录扫描与 Top-K 分析 |
 | [Mimalloc](./video/mimalloc.md) | 5 | 开源项目源码阅读 |
 
 <details>
 <summary><b>📝 完整播放列表</b></summary>
 
-**[现代C++工程实践](https://space.bilibili.com/294645890/lists/7045956)** - 持续更新中
+**[现代C++工程实践](https://space.bilibili.com/294645890/lists/7045956)** — 第一季 5 系列 46 期已完结（2026-03），第二季筹备中
 
 </details>
 
@@ -159,11 +183,11 @@ cmake --build build
 - 🐛 **GitHub Issue** - 描述具体问题，附上复现代码
 - 💬 **讨论区** - 交流学习心得，提出建议
 
-非常感谢来自B站评论区的各位的建议，这里特别对各位的建议整理成一份TODO清单:
+非常感谢来自 B 站评论区的各位建议。以下为历史建议存档（暂未纳入 ROADMAP，保留溯源）:
 
-| 平台 | 用户名 | 原评论 | 对应的TODO反馈 |
-|------|--------|--------|----------------|
-| B站 | cache是什么 | 来自c++26有些新特性有助于写一个更好用的argparser，可以等编译器支持了再写一个，比如反射机制 | 等gcc足够新的支持静态反射，重新出一版ArgParser教程 |
+| 平台 | 用户名 | 原评论 | 状态 |
+|------|--------|--------|------|
+| B站 | cache是什么 | 来自 C++26 反射机制有助于写更好用的 argparser，等编译器支持再写 | 📌 历史建议：待 GCC 支持静态反射，可能出 ArgParser v2 |
 
 ### 贡献方式
 
@@ -190,11 +214,12 @@ cmake --build build
 - 分享给身边学习 C++ 的朋友（然后一起开喷代码写的好烂）（逃
 - 在 B 站关注我，获取更新通知
 
-## 🌟 其他
+## 🔗 相关资源
 
-当然如果感觉自己误闯天家，没事，这里还有专门的（偏嵌入式的）现代C++教程，点击访问仓库：
+> 想学 C++ 原理？配套姊妹仓 **[Tutorial_AwesomeModernCPP](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_AwesomeModernCPP)** 讲原理，本仓把原理组装成能跑的工程。
 
-👉 :link: [现代C++教程](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_AwesomeModernCPP)
+- 🧠 **[Tutorial_AwesomeModernCPP](https://github.com/Awesome-Embedded-Learning-Studio/Tutorial_AwesomeModernCPP)** — 现代 C++ 原理（偏嵌入式方向）
+- 🧩 **[anatomy_memory](https://github.com/Awesome-Embedded-Learning-Studio/anatomy_memory)** — 解剖内存 · C++ 内存分配器专栏（本仓 MemoryPool spoke 的独立仓，长期开发中）
 
 ---
 

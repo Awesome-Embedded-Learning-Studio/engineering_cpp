@@ -22,7 +22,7 @@
 
 - **视频教程**: [B站 - 内存池实战](https://space.bilibili.com/294645890/lists/7045956)（9集）
 - **源码位置**: [project/memory_pool/MyMemoryPool/](../../project/memory_pool/MyMemoryPool/)
-- **相关项目**: [Project_MakeAMemroyPool](https://github.com/Awesome-Embedded-Learning-Studio/Project_MakeAMemroyPool)
+- **相关项目**: [anatomy_memory](https://github.com/Awesome-Embedded-Learning-Studio/anatomy_memory)
 - **作者**: [是的一个城管](https://space.bilibili.com/294645890)
 
 ---

@@ -4,7 +4,7 @@
 >
 > 外部仓库：[microsoft/mimalloc](https://github.com/microsoft/mimalloc)
 >
-> 本仓库路径：[project/external/mimalloc](../project/external/mimalloc/)
+> 本地拉取：运行 `bash scripts/fetch_mimalloc.sh`（见 [scripts/fetch_mimalloc.sh](../scripts/fetch_mimalloc.sh)）
 
 ---
 
@@ -52,6 +52,6 @@
 ## 🔗 相关链接
 
 - **官方仓库**: [microsoft/mimalloc](https://github.com/microsoft/mimalloc)
-- **本地路径**: [project/external/mimalloc](../project/external/mimalloc/)
+- **本地拉取**: `bash scripts/fetch_mimalloc.sh`（拉取后在 `project/external/mimalloc/`）
 - **论文**: [mimalloc: Free List Shuffling, Caching, Partial Coalescing, and Segregation](https://www.microsoft.com/en-us/research/publication/mimalloc-free-list-shuffling-caching-partial-coalescing-and-segregation/)
 - **UP主**: [是的一个城管](https://space.bilibili.com/294645890)

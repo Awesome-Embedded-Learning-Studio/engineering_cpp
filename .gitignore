@@ -1,1 +1,9 @@
 .claude/
+.cache/
+/reference/
+/build/
+/project/external/
+
+# 临时交接文档（重构期间，非仓库正式内容，见 REFACTOR-HANDOFF.md 自述）
+/REFACTOR-HANDOFF.md
+/refactor-handoff/
