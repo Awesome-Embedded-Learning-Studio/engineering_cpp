@@ -1,4 +1,4 @@
-# 🎬 Project_CXXBaseComponents
+# 🎬 engineering-cpp
 
 **C++23 | CMake 3.25+ | MIT License**
 
@@ -37,17 +37,19 @@
 | 项目 | 最低版本 | 推荐版本 |
 |------|----------|----------|
 | C++ 标准 | C++23 | C++23 |
-| GCC | 11+ | 13+ |
-| Clang | 13+ | 16+ |
-| MSVC | 193+ | 最新 |
+| GCC | 14+ | 14+ |
+| Clang | 18+ | 19+ |
+| MSVC | 19.34+ | 最新 |
 | CMake | 3.25+ | 3.28+ |
+
+> demo.cpp 用 `std::println`（C++23 `<print>`）演示现代写法，因此 GCC 14+ / Clang 18+ / MSVC 19.34+ 才能编译。
 
 ### 克隆仓库
 
 ```bash
 # 克隆主仓库
-git clone https://github.com/Awesome-Embedded-Learning-Studio/Project_CXXBaseComponents
-cd Project_CXXBaseComponents
+git clone https://github.com/Awesome-Embedded-Learning-Studio/engineering_cpp
+cd engineering_cpp
 
 # 初始化子模块（spoke 专栏仓：IniParser / MemoryPool）
 git submodule update --init

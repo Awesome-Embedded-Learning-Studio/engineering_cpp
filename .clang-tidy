@@ -1,0 +1,24 @@
+# clang-tidy 基础配置(engineering-cpp hub)
+# 检查:bugprone / modernize / performance / readability 四大类
+# 排除教学仓里噪音较大的检查(magic-numbers / identifier-length 等)
+# WarningsAsErrors 留空:CI 里 clang-tidy 仅报告,不阻塞(初次跑会有历史 warning)
+
+Checks: >
+  -*,
+  bugprone-*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-narrowing-conversions,
+  -modernize-use-trailing-return-type,
+  -modernize-use-nodiscard,
+  -performance-unnecessary-value-param,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -readability-function-cognitive-complexity,
+  -readability-named-parameter
+
+WarningsAsErrors: ''
+
+HeaderFilterRegex: 'src/.*\.h$'
